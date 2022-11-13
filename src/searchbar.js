@@ -1,35 +1,24 @@
-import React, { Component } from 'react';
-import SearchBox from 'react-responsive-searchbox/lib/SearchBox';
+import React from 'react';
 import 'font-awesome/css/font-awesome.min.css';
+import Searching from './searching.js';
 
-class SearchBar extends Component {
 
-    state = { searchBoxVal: "" }
+const SearchBar = () => {
 
-    handleSearchBoxValChange = (e) => {
-        this.setState({
-            searchBoxVal: e.target.value
-        })
-    }
+    const [userInputText, setUserInput] = React.useState('');
 
-    handleSearchBoxSubmit = (e) => {
-        e.preventDefault();
-        console.log(this.state.searchBoxVal);
-    }
-
-    render() {
-        return (
-            <div>
-                <SearchBox placeholder="Enter a movie or web series or anime " value={this.state.searchBoxVal} onchange={this.handleSearchBoxValChange}
-                    searchBoxStyles={{ color: "black", height: "25%", border: "3px solid black" }}
-                    searchButtonStyles={{ background: "black", border: "3px solid black" }}
-                    searchIconStyles={{ color: "#fff", height: "25%", lineHeight: "25%" }}
-                    OnSubmit={this.handleSearchBoxSubmit}
+    return (
+        <div>
+            <label>
+                Name:
+                <input type="text" id="userInput" onChange={e => setUserInput(e.target.value)}
+                //userInput={userInput} 
                 />
+            </label>
+            <Searching userInput={{ userInputText }} />
+        </div>
 
-            </div>
-        );
-    }
+    );
 }
 
 export default SearchBar;
